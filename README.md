@@ -17,15 +17,6 @@ replenish is a fictional protein drink brand, designed and built by nish as a po
 - TypeScript
 - Plain CSS with design tokens and CSS Modules
 
-## Run it locally
-
-```bash
-npm install
-npm run dev
-```
-
-Then open [http://localhost:3000](http://localhost:3000).
-
 ## Project structure
 
 ```
@@ -39,4 +30,4 @@ public/             fonts, can artwork and avatars
 
 ---
 
-Made by nish.
+Made by nish with claude code.
