@@ -1,0 +1,499 @@
+/* Landing page layout. Desktop values match the 1440 artboard, phone values the 390 artboard (≤760px). */
+
+.page {
+  overflow-x: clip;
+}
+
+/* ---------- variant switches (for components whose size is a prop) ---------- */
+@media (min-width: 761px) {
+  .phone {
+    display: none !important;
+  }
+}
+@media (max-width: 760px) {
+  .desk {
+    display: none !important;
+  }
+}
+
+/* ---------- nav ---------- */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+}
+
+/* ---------- shared section bits ---------- */
+.section {
+  padding: 112px 28px;
+  border-bottom: var(--rule);
+  scroll-margin-top: var(--nav-h);
+}
+.head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 24px;
+  margin-bottom: 48px;
+}
+.h2 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(40px, 3.6vw, 52px);
+  line-height: 1.02;
+  letter-spacing: 0;
+  margin: 0;
+  text-wrap: pretty;
+}
+.lede {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  max-width: 360px;
+  color: var(--text-secondary);
+  margin: 0;
+}
+.grid4 {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 20px;
+}
+.grid3 {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+}
+@media (max-width: 1100px) {
+  .grid4,
+  .grid3 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* ---------- hero ---------- */
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+  grid-template-areas:
+    'copy art'
+    'cta art';
+  column-gap: 48px;
+  row-gap: 24px;
+  align-content: center;
+  align-items: center;
+  padding: 72px 28px 88px 56px;
+  border-bottom: var(--rule);
+  min-height: 640px;
+}
+.heroCopy {
+  grid-area: copy;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  align-items: flex-start;
+}
+.h1 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(52px, 5.28vw, 76px);
+  line-height: 0.98;
+  letter-spacing: -0.01em;
+  margin: 0;
+  max-width: 680px;
+  text-wrap: pretty;
+}
+.aside {
+  font-family: var(--font-hand);
+  font-size: 36px;
+  color: var(--nish-500);
+  transform: rotate(-3deg);
+  line-height: 1.1;
+  margin: 0 0 8px 6px;
+}
+.heroCta {
+  grid-area: cta;
+  align-self: start;
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.priceNote {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+.heroArt {
+  grid-area: art;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  padding-top: 24px;
+}
+@media (max-width: 1240px) {
+  .heroArt.desk {
+    zoom: 0.82;
+  }
+}
+@media (max-width: 960px) {
+  .heroArt.desk {
+    zoom: 0.66;
+  }
+}
+
+/* ---------- lineup ---------- */
+.card {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: var(--ink-900);
+  background: var(--cream-50);
+  border: var(--outline);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition:
+    transform var(--dur-base) var(--ease-squish),
+    box-shadow var(--dur-base) var(--ease-squish);
+}
+.card:hover {
+  color: var(--ink-900);
+  transform: translateY(-4px) rotate(-1deg);
+  box-shadow: var(--shadow-md);
+}
+.card:nth-child(even):hover {
+  transform: translateY(-4px) rotate(1deg);
+}
+.cardImg {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  border-bottom: var(--outline);
+}
+.cardBody {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 18px 20px 20px;
+}
+.cardName {
+  font-family: var(--font-display);
+  font-size: 24px;
+  line-height: 1.1;
+}
+.cardLine {
+  font-size: 15px;
+  color: var(--text-secondary);
+  min-height: 44px;
+}
+.cardFoot {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-top: 4px;
+  font-family: var(--font-mono);
+  font-size: 14px;
+}
+.cardShop {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.swipe {
+  font-family: var(--font-hand);
+  font-size: 22px;
+  color: var(--nish-500);
+  transform: rotate(-3deg);
+  margin: 14px 16px 0;
+}
+
+/* ---------- nutrition ---------- */
+.nutrition {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+  gap: 48px;
+  align-items: center;
+  padding: 120px 56px;
+  background: var(--nish-500);
+  color: var(--cream-50);
+  border-bottom: var(--rule);
+}
+.nutritionCopy {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+.mega {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(88px, 9.17vw, 132px);
+  line-height: 0.92;
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+.zest {
+  color: var(--zest-500);
+}
+.nutritionBody {
+  font-size: 20px;
+  line-height: 1.5;
+  max-width: 460px;
+  margin: 0;
+}
+.panelWrap {
+  display: grid;
+  place-items: center;
+}
+
+/* ---------- about ---------- */
+.about {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 64px;
+  padding: 112px 28px 112px 56px;
+  scroll-margin-top: var(--nav-h);
+}
+.aboutCopy {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: flex-start;
+}
+.aboutLead {
+  font-size: 20px;
+  line-height: 1.5;
+  max-width: 520px;
+  margin: 0;
+}
+.aboutNote {
+  font-size: 16px;
+  line-height: 1.5;
+  max-width: 520px;
+  color: var(--text-secondary);
+  margin: 0;
+}
+.aboutCta {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  margin-top: 8px;
+}
+.trueBit {
+  font-family: var(--font-hand);
+  font-size: 24px;
+  color: var(--nish-500);
+  transform: rotate(-4deg);
+  white-space: nowrap;
+}
+
+/* ---------- phone footer ---------- */
+.pFooter {
+  border-top: var(--rule);
+  background: var(--surface-page);
+}
+.pFooterTop {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  padding: 40px 16px 32px;
+}
+.pFooterIntro {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.pDisclaimer {
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 1.45;
+  margin: 0;
+}
+.pCredit {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin: 0;
+}
+.pCols {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px 16px;
+}
+.pCol {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.pColTitle {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-caps);
+  color: var(--text-muted);
+}
+.pColTitle + .pColTitle,
+.pCol a + .pColTitle {
+  margin-top: 10px;
+}
+.pCol a {
+  font-size: 14px;
+  color: var(--ink-900);
+  text-decoration: none;
+}
+.pFooterLogo {
+  border-top: var(--rule);
+  padding: 8px 16px 20px;
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* ---------- phone (≤760) ---------- */
+@media (max-width: 760px) {
+  .section {
+    padding: 56px 16px;
+  }
+  .head {
+    display: block;
+    margin-bottom: 28px;
+  }
+  .h2 {
+    font-size: 34px;
+    line-height: 1.04;
+    margin-bottom: 10px;
+  }
+  .lede {
+    font-size: 13px;
+    max-width: none;
+  }
+
+  .hero {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas: 'copy' 'art' 'cta';
+    row-gap: 18px;
+    min-height: 0;
+    padding: 32px 16px 40px;
+    overflow: hidden;
+  }
+  .heroCopy {
+    gap: 18px;
+  }
+  .h1 {
+    font-size: 42px;
+    line-height: 1;
+  }
+  .aside {
+    font-size: 28px;
+    margin: 0 0 0 4px;
+  }
+  .heroArt {
+    align-self: stretch;
+    padding-top: 12px;
+  }
+  .heroCta {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 18px;
+  }
+  .priceNote {
+    align-self: center;
+    font-size: 13px;
+  }
+
+  .benefits {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 14px;
+  }
+
+  /* lineup + reviews become swipeable rows that bleed to the screen edge */
+  .scrollSection {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .scrollSection .head {
+    padding: 0 16px;
+  }
+  .lineup,
+  .reviews {
+    grid-template-columns: none;
+    grid-auto-flow: column;
+    gap: 14px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding: 0 16px 12px;
+    scroll-padding: 16px;
+  }
+  .lineup {
+    grid-auto-columns: 248px;
+  }
+  .reviews {
+    grid-auto-columns: 300px;
+    align-items: stretch;
+  }
+  .lineup > *,
+  .reviews > * {
+    scroll-snap-align: start;
+  }
+  .card,
+  .card:hover,
+  .card:nth-child(even):hover {
+    transform: none;
+    box-shadow: var(--shadow-sm);
+  }
+  .cardBody {
+    gap: 6px;
+    padding: 14px 16px 16px;
+  }
+  .cardName {
+    font-size: 21px;
+  }
+  .cardLine {
+    font-size: 14px;
+    min-height: 40px;
+  }
+  .cardFoot {
+    margin-top: 0;
+    font-size: 13px;
+  }
+  .cardShop {
+    text-underline-offset: auto;
+  }
+
+  .nutrition {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 32px;
+    padding: 64px 16px;
+    overflow: hidden;
+  }
+  .nutritionCopy {
+    gap: 32px;
+  }
+  .mega {
+    font-size: 64px;
+    letter-spacing: 0;
+  }
+  .nutritionBody {
+    font-size: 17px;
+    max-width: none;
+  }
+
+  .about {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 30px;
+    padding: 56px 16px;
+  }
+  .aboutCopy {
+    gap: 18px;
+  }
+  .aboutLead {
+    font-size: 17px;
+  }
+  .aboutNote {
+    font-size: 15px;
+  }
+  .aboutCta {
+    margin-top: 0;
+  }
+}

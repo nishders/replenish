@@ -1,0 +1,13 @@
+:root{
+--radius-xs:6px;--radius-sm:10px;--radius-md:16px;--radius-lg:24px;--radius-xl:36px;--radius-pill:999px;
+--border-hair:1px;--border-thin:1.5px;--border-thick:2.5px;--border-chunky:3.5px;
+--outline:var(--border-thick) solid var(--border-default);
+--rule:var(--border-hair) solid var(--border-default);
+/* shadows are hard offsets, like a sticker lifted off the page — never soft blur */
+--shadow-none:none;
+--shadow-sm:2px 2px 0 var(--ink-900);
+--shadow-md:4px 4px 0 var(--ink-900);
+--shadow-lg:7px 7px 0 var(--ink-900);
+--shadow-brand:5px 5px 0 var(--nish-500);
+--shadow-focus:0 0 0 3px var(--cream-50),0 0 0 6px var(--focus-ring);
+}

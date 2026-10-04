@@ -1,0 +1,41 @@
+/* replenish — colour tokens. One background (cream), one brand colour (nish teal), one accent (zest apricot), one colour per flavour. */
+:root{
+/* base: cream (background) */
+--cream-50:#FFFAF3;--cream-100:#FFF3E6;--cream-200:#F8E5CF;--cream-300:#EED5B6;
+/* base: ink (text, outlines) — a deep teal-black, never pure #000 */
+--ink-900:#0F2422;--ink-800:#1A3633;--ink-700:#33504D;--ink-500:#5E7774;--ink-300:#A9BAB7;--ink-100:#E1E8E6;
+/* brand: nish teal */
+--nish-100:#D2EFEB;--nish-200:#A6DED7;--nish-300:#5FBFB4;--nish-400:#129B91;--nish-500:#0B7C74;--nish-600:#08625C;--nish-700:#064A45;
+/* accent: zest apricot (CTAs, highlights, stickers) */
+--zest-100:#FFF0D6;--zest-200:#FFDFA8;--zest-400:#FFC872;--zest-500:#FFB547;--zest-600:#F29A1A;
+/* flavours: solid + tint */
+--flavour-vanilla:#F5E08C;--flavour-vanilla-tint:#FCF4CF;
+--flavour-chocolate:#7A4A33;--flavour-chocolate-tint:#EBD3C3;
+--flavour-strawberry:#FF7E9C;--flavour-strawberry-tint:#FFD5DF;
+--flavour-latte:#8FCDE6;--flavour-latte-tint:#D8EFF8;
+/* semantic */
+--success-500:#138A59;--success-100:#D3F2E2;
+--error-500:#D93A24;--error-100:#FFDCD4;
+--warning-500:var(--zest-500);--warning-100:var(--zest-100);
+--white:#FFFFFF;
+
+/* semantic aliases */
+--surface-page:var(--cream-100);
+--surface-raised:var(--cream-50);
+--surface-sunken:var(--cream-200);
+--surface-brand:var(--nish-500);
+--surface-accent:var(--zest-500);
+--surface-inverse:var(--ink-900);
+--text-primary:var(--ink-900);
+--text-secondary:var(--ink-700);
+--text-muted:var(--ink-500);
+--text-on-brand:var(--cream-50);
+--text-on-accent:var(--ink-900);
+--text-on-inverse:var(--cream-100);
+--text-brand:var(--nish-500);
+--text-link:var(--nish-600);
+--text-link-hover:var(--nish-700);
+--border-default:var(--ink-900);
+--border-subtle:var(--ink-300);
+--focus-ring:var(--nish-400);
+}

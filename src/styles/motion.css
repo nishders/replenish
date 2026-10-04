@@ -1,0 +1,17 @@
+:root{
+--ease-squish:cubic-bezier(.34,1.56,.64,1);/* @kind other */
+--ease-out:cubic-bezier(.22,1,.36,1);/* @kind other */
+--ease-in-out:cubic-bezier(.65,0,.35,1);/* @kind other */
+--dur-fast:120ms;/* @kind other */--dur-base:220ms;/* @kind other */--dur-slow:420ms;/* @kind other */--dur-wipe:700ms;/* @kind other */
+--press-scale:.94;/* @kind other */
+--tilt-hover:-6deg;/* @kind other */
+--wobble:3deg;/* @kind other */
+}
+@keyframes nish-wobble{0%,100%{transform:rotate(calc(var(--wobble) * -1))}50%{transform:rotate(var(--wobble))}}
+@keyframes nish-marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@keyframes nish-pop{0%{transform:scale(.6);opacity:0}70%{transform:scale(1.08);opacity:1}100%{transform:scale(1)}}
+@keyframes nish-jelly{0%{transform:scale(1,1)}30%{transform:scale(1.18,.8)}45%{transform:scale(.88,1.12)}60%{transform:scale(1.06,.94)}75%{transform:scale(.97,1.03)}100%{transform:scale(1,1)}}
+@keyframes nish-jiggle{0%,100%{transform:rotate(0)}20%{transform:rotate(-16deg) scale(1.12)}40%{transform:rotate(12deg)}60%{transform:rotate(-8deg)}80%{transform:rotate(4deg)}}
+@keyframes nish-rattle{0%,100%{transform:translate(0,0) rotate(0)}25%{transform:translate(-3px,1px) rotate(-6deg)}50%{transform:translate(3px,-1px) rotate(5deg)}75%{transform:translate(-2px,0) rotate(-3deg)}}
+@keyframes nish-quip{0%{opacity:0;transform:translate(-50%,-6px) rotate(0) scale(.8)}100%{opacity:1;transform:translate(-50%,0) rotate(-3deg) scale(1)}}
+@media (prefers-reduced-motion:reduce){:root{--dur-fast:0ms;/* @kind other */--dur-base:0ms;/* @kind other */--dur-slow:0ms;/* @kind other */--dur-wipe:0ms;/* @kind other */}}

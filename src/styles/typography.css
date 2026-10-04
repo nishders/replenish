@@ -1,0 +1,29 @@
+:root{
+--font-logo:'Darumadrop One','Caprasimo',cursive;
+--font-display:'Caprasimo','Cooper Black','Georgia',serif;
+--font-body:'Bricolage Grotesque','Helvetica Neue',system-ui,sans-serif;
+--font-mono:'DM Mono',ui-monospace,'Menlo',monospace;
+--font-hand:'Gochi Hand','Comic Sans MS',cursive;
+
+--text-mega:clamp(72px,13vw,184px);
+--text-display:clamp(56px,8vw,112px);
+--text-h1:clamp(40px,5.2vw,68px);
+--text-h2:clamp(32px,3.6vw,46px);
+--text-h3:30px;
+--text-h4:22px;
+--text-body-lg:19px;
+--text-body:16px;
+--text-small:14px;
+--text-mono:13px;
+--text-micro:11px;
+
+--leading-tight:0.95;
+--leading-snug:1.12;
+--leading-body:1.5;
+--leading-mono:1.6;
+--tracking-display:-0.01em;
+--tracking-mono:0.02em;
+--tracking-caps:0.08em;
+
+--weight-body:400;--weight-medium:500;--weight-semibold:600;--weight-bold:700;--weight-black:800;
+}
