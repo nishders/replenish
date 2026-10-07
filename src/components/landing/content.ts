@@ -1,15 +1,4 @@
 import type { Flavour } from '@/components/ds/assets';
-import type { FooterColumn } from '@/components/ds/Footer';
-import type { NavItem } from '@/components/ds/NavBar';
-
-// The shop page isn't built yet, so shop links point at the lineup section for now.
-export const SHOP_HREF = '#lineup';
-export const ABOUT_HREF = '#about';
-
-export const NAV_LINKS: NavItem[] = [
-  { label: 'shop', id: 'shop', href: SHOP_HREF, quip: "it's all free" },
-  { label: 'what is this?', id: 'about', href: ABOUT_HREF, quip: 'good question' },
-];
 
 export const ZERO_TICKER = ['0g protein', '0g sugar', '0g drink', '0ml per can', '100% imaginary'];
 
@@ -42,29 +31,3 @@ export const FAQ = [
   { title: 'What happens when I order?', body: 'You get an order number, an email, and the warm feeling of having bought nothing.' },
   { title: 'Who made it?', body: 'nish, a designer-developer who wanted a very nish product for a very nish market.' },
 ];
-
-const flavourLinks = LINEUP.map((f) => ({ label: f.name, href: SHOP_HREF }));
-const accountLinks = [
-  { label: 'log in', href: '#' },
-  { label: 'my orders', href: '#' },
-  { label: 'cart', href: '#' },
-];
-const truthLinks = [
-  { label: 'what is this?', href: ABOUT_HREF },
-  { label: 'credits', href: '#' },
-];
-
-export const FOOTER_COLUMNS: FooterColumn[] = [
-  { title: 'shop', links: flavourLinks },
-  { title: 'account', links: accountLinks },
-  { title: 'the truth', links: [...truthLinks, { label: 'github', href: '#' }] },
-];
-
-// The phone footer drops github and stacks "the truth" under "account".
-export const PHONE_FOOTER_COLUMNS: FooterColumn[] = [
-  { title: 'shop', links: flavourLinks },
-  { title: 'account', links: accountLinks },
-  { title: 'the truth', links: truthLinks },
-];
-
-export const CREDIT = 'designed & built by nish';

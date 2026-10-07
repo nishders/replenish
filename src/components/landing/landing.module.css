@@ -16,13 +16,6 @@
   }
 }
 
-/* ---------- nav ---------- */
-.nav {
-  position: sticky;
-  top: 0;
-  z-index: 20;
-}
-
 /* ---------- shared section bits ---------- */
 .section {
   padding: 112px 28px;
@@ -286,68 +279,6 @@
   color: var(--nish-500);
   transform: rotate(-4deg);
   white-space: nowrap;
-}
-
-/* ---------- phone footer ---------- */
-.pFooter {
-  border-top: var(--rule);
-  background: var(--surface-page);
-}
-.pFooterTop {
-  display: flex;
-  flex-direction: column;
-  gap: 28px;
-  padding: 40px 16px 32px;
-}
-.pFooterIntro {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-.pDisclaimer {
-  font-weight: 600;
-  font-size: 15px;
-  line-height: 1.45;
-  margin: 0;
-}
-.pCredit {
-  font-family: var(--font-mono);
-  font-size: 12px;
-  color: var(--text-secondary);
-  margin: 0;
-}
-.pCols {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 24px 16px;
-}
-.pCol {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-.pColTitle {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  text-transform: uppercase;
-  letter-spacing: var(--tracking-caps);
-  color: var(--text-muted);
-}
-.pColTitle + .pColTitle,
-.pCol a + .pColTitle {
-  margin-top: 10px;
-}
-.pCol a {
-  font-size: 14px;
-  color: var(--ink-900);
-  text-decoration: none;
-}
-.pFooterLogo {
-  border-top: var(--rule);
-  padding: 8px 16px 20px;
-  display: flex;
-  justify-content: center;
-  overflow: hidden;
 }
 
 /* ---------- phone (≤760) ---------- */

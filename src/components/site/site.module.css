@@ -1,0 +1,82 @@
+/* Site chrome shared by every page: sticky nav, phone footer, and the desktop/phone variant switches. */
+
+/* ---------- variant switches (for components whose size is a prop) ---------- */
+@media (min-width: 761px) {
+  .phone {
+    display: none !important;
+  }
+}
+@media (max-width: 760px) {
+  .desk {
+    display: none !important;
+  }
+}
+
+/* ---------- nav ---------- */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+}
+
+/* ---------- phone footer ---------- */
+.pFooter {
+  border-top: var(--rule);
+  background: var(--surface-page);
+}
+.pFooterTop {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  padding: 40px 16px 32px;
+}
+.pFooterIntro {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.pDisclaimer {
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 1.45;
+  margin: 0;
+}
+.pCredit {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin: 0;
+}
+.pCols {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px 16px;
+}
+.pCol {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.pColTitle {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-caps);
+  color: var(--text-muted);
+}
+.pColTitle + .pColTitle,
+.pCol a + .pColTitle {
+  margin-top: 10px;
+}
+.pCol a {
+  font-size: 14px;
+  color: var(--ink-900);
+  text-decoration: none;
+}
+.pFooterLogo {
+  border-top: var(--rule);
+  padding: 8px 16px 20px;
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+}

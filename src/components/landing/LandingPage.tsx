@@ -3,16 +3,14 @@ import { Accordion } from '@/components/ds/Accordion';
 import { sceneSrc } from '@/components/ds/assets';
 import { BenefitTile } from '@/components/ds/BenefitTile';
 import { Button } from '@/components/ds/Button';
-import { Footer } from '@/components/ds/Footer';
-import { GooglyEyes } from '@/components/ds/GooglyEyes';
-import { Logo } from '@/components/ds/Logo';
-import { NavBar } from '@/components/ds/NavBar';
 import { NutritionPanel } from '@/components/ds/NutritionPanel';
 import { Pack } from '@/components/ds/Pack';
 import { ReviewCard } from '@/components/ds/ReviewCard';
 import { Sticker } from '@/components/ds/Sticker';
 import { Ticker } from '@/components/ds/Ticker';
-import { BENEFITS, CREDIT, FAQ, FOOTER_COLUMNS, LINEUP, NAV_LINKS, PHONE_FOOTER_COLUMNS, REVIEWS, SHOP_HREF, ZERO_TICKER } from './content';
+import { SiteFooter, SiteHeader } from '@/components/site/SiteChrome';
+import { SHOP_HREF } from '@/components/site/content';
+import { BENEFITS, FAQ, LINEUP, REVIEWS, ZERO_TICKER } from './content';
 import s from './landing.module.css';
 import { ShopForFree } from './ShopForFree';
 
@@ -52,49 +50,10 @@ function HeroArt({ phone }: { phone?: boolean }) {
   );
 }
 
-function PhoneFooter() {
-  const [shop, account, truth] = PHONE_FOOTER_COLUMNS;
-  const links = (c: typeof shop) => c.links.map((l) => <a key={l.label} href={l.href}>{l.label}</a>);
-  return (
-    <footer className={cx(s.pFooter, s.phone)}>
-      <div className={s.pFooterTop}>
-        <div className={s.pFooterIntro}>
-          <GooglyEyes size={24} />
-          <p className={s.pDisclaimer}>replenish is a portfolio project. Please do not attempt to drink this website.</p>
-          <p className={s.pCredit}>{CREDIT}</p>
-        </div>
-        <div className={s.pCols}>
-          <div className={s.pCol}>
-            <span className={s.pColTitle}>{shop.title}</span>
-            {links(shop)}
-          </div>
-          <div className={s.pCol}>
-            <span className={s.pColTitle}>{account.title}</span>
-            {links(account)}
-            <span className={s.pColTitle}>{truth.title}</span>
-            {links(truth)}
-          </div>
-        </div>
-      </div>
-      <div className={s.pFooterLogo}>
-        <Logo size={82} />
-      </div>
-    </footer>
-  );
-}
-
 export function LandingPage() {
   return (
     <div className={s.page}>
-      <Ticker />
-      <header className={s.nav}>
-        <div className={s.desk}>
-          <NavBar links={NAV_LINKS} active="home" cartCount={0} />
-        </div>
-        <div className={s.phone}>
-          <NavBar compact cartCount={0} />
-        </div>
-      </header>
+      <SiteHeader active="home" />
 
       <main>
         {/* hero */}
@@ -223,10 +182,7 @@ export function LandingPage() {
         </section>
       </main>
 
-      <div className={s.desk}>
-        <Footer columns={FOOTER_COLUMNS} credit={CREDIT} />
-      </div>
-      <PhoneFooter />
+      <SiteFooter />
     </div>
   );
 }

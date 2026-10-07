@@ -1,0 +1,240 @@
+/* Shop page layout. Desktop values match the 1440 artboard, phone values the 390 artboard (≤760px). */
+
+.page {
+  overflow-x: clip;
+}
+
+@media (min-width: 761px) {
+  .phone {
+    display: none !important;
+  }
+}
+@media (max-width: 760px) {
+  .desk {
+    display: none !important;
+  }
+}
+
+/* ---------- header ---------- */
+.header {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 32px;
+  padding: 80px 28px 40px 56px;
+  border-bottom: var(--rule);
+}
+.headCopy {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.h1 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 96px;
+  line-height: 0.95;
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+.aside {
+  font-family: var(--font-hand);
+  font-size: 34px;
+  color: var(--nish-500);
+  transform: rotate(-2deg);
+  line-height: 1.1;
+  margin: 0 0 0 6px;
+}
+.headSide {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 20px;
+}
+.meta {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+/* ---------- grid ---------- */
+.shelf {
+  padding: 56px 28px 112px;
+  border-bottom: var(--rule);
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 24px;
+}
+@media (max-width: 1100px) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+.card {
+  display: flex;
+  flex-direction: column;
+  background: var(--cream-50);
+  border: var(--outline);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  transition:
+    transform var(--dur-base) var(--ease-squish),
+    box-shadow var(--dur-base) var(--ease-squish);
+}
+.card:hover {
+  transform: translateY(-4px) rotate(-1deg);
+  box-shadow: var(--shadow-md);
+}
+.cardArt {
+  position: relative;
+  border-bottom: var(--outline);
+  border-radius: calc(var(--radius-lg) - 2.5px) calc(var(--radius-lg) - 2.5px) 0 0;
+  overflow: hidden;
+}
+.cardImg {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+}
+.cardSticker {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+}
+.cardBody {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 18px 20px 20px;
+  flex: 1;
+}
+.cardTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+}
+.cardName {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 1.1;
+  margin: 0;
+}
+.price {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  white-space: nowrap;
+}
+.cardLine {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  line-height: var(--leading-mono);
+  color: var(--text-secondary);
+  margin: 0;
+  flex: 1;
+  min-height: 40px;
+}
+.addWrap {
+  margin-top: 10px;
+}
+.outro {
+  font-family: var(--font-hand);
+  font-size: 26px;
+  color: var(--nish-500);
+  transform: rotate(-2deg);
+  margin: 40px 0 0 28px;
+}
+.empty {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+/* ---------- phone (≤760) ---------- */
+@media (max-width: 760px) {
+  .header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+    padding: 36px 16px 28px;
+  }
+  .headCopy {
+    gap: 10px;
+  }
+  .h1 {
+    font-size: 52px;
+    letter-spacing: 0;
+  }
+  .aside {
+    font-size: 25px;
+    margin: 0 0 6px 4px;
+    max-width: 260px;
+  }
+  .headSide {
+    display: contents;
+  }
+  .meta {
+    font-size: 12px;
+  }
+  .headSticker {
+    position: absolute;
+    top: 28px;
+    right: 16px;
+  }
+
+  .shelf {
+    padding: 24px 16px 48px;
+  }
+  .grid {
+    gap: 12px;
+  }
+  .card,
+  .card:hover {
+    transform: none;
+    box-shadow: var(--shadow-sm);
+  }
+  .cardSticker {
+    top: 10px;
+    right: 10px;
+  }
+  .cardBody {
+    gap: 6px;
+    padding: 12px 12px 14px;
+  }
+  /* phone card stacks name, line, then price */
+  .cardTop {
+    display: contents;
+  }
+  .cardName {
+    font-size: 18px;
+  }
+  .cardLine {
+    font-size: 12px;
+    line-height: 1.45;
+    min-height: 0;
+  }
+  .price {
+    order: 1;
+    font-size: 13px;
+    margin-top: 2px;
+  }
+  .addWrap {
+    order: 2;
+    margin-top: 6px;
+  }
+  .addWrap button {
+    min-height: 44px;
+  }
+  .outro {
+    font-size: 22px;
+    transform: rotate(-3deg);
+    margin: 28px 0 0 4px;
+  }
+}
