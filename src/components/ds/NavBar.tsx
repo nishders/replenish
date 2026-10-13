@@ -47,6 +47,7 @@ type NavBarProps = {
   loggedIn?: boolean;
   compact?: boolean;
   logoHref?: string;
+  account?: ReactNode;
   onNavigate?: (id: string) => void;
   onCart?: () => void;
   onAccount?: () => void;
@@ -56,6 +57,7 @@ type NavBarProps = {
 };
 
 // Centred wordmark nav: underlined text links left, doodle icon buttons right. compact = phone (menu · logo · cart).
+// `account` replaces the default account icon (e.g. a "log in" link or a signed-in menu).
 export function NavBar({
   links = LINKS,
   active,
@@ -63,6 +65,7 @@ export function NavBar({
   loggedIn = false,
   compact = false,
   logoHref = '/',
+  account,
   onNavigate,
   onCart,
   onAccount,
@@ -107,7 +110,10 @@ export function NavBar({
           <IconButton icon="menu" label="menu" size={40} onClick={onMenu} />
         </div>
         {logo}
-        <div style={{ justifySelf: 'end' }}>{cart}</div>
+        <div style={{ display: 'flex', gap: 8, justifySelf: 'end', alignItems: 'center' }}>
+          {account}
+          {cart}
+        </div>
       </nav>
     );
   }
@@ -122,12 +128,14 @@ export function NavBar({
       </div>
       {logo}
       <div style={{ display: 'flex', gap: 12, justifySelf: 'end', alignItems: 'center' }}>
-        <IconButton
-          icon="user"
-          label={loggedIn ? 'my orders' : 'log in'}
-          quip={loggedIn ? 'your orders of nothing' : undefined}
-          onClick={onAccount}
-        />
+        {account ?? (
+          <IconButton
+            icon="user"
+            label={loggedIn ? 'my orders' : 'log in'}
+            quip={loggedIn ? 'your orders of nothing' : undefined}
+            onClick={onAccount}
+          />
+        )}
         {cart}
       </div>
     </nav>

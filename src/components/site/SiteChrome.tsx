@@ -3,22 +3,23 @@ import { GooglyEyes } from '@/components/ds/GooglyEyes';
 import { Logo } from '@/components/ds/Logo';
 import { NavBar } from '@/components/ds/NavBar';
 import { Ticker } from '@/components/ds/Ticker';
+import { AccountNav } from './AccountNav';
 import { CREDIT, FOOTER_COLUMNS, NAV_LINKS, PHONE_FOOTER_COLUMNS } from './content';
 import s from './site.module.css';
 
 const cx = (...c: (string | false | undefined)[]) => c.filter(Boolean).join(' ');
 
-// Ticker + sticky nav. `active` is the nav link id to underline ('home', 'shop', 'about').
-export function SiteHeader({ active }: { active?: string }) {
+// Ticker + sticky nav. `active` is the nav link id to underline ('home', 'shop', 'about'); `accountQuip` is the "log in" link's hover joke.
+export function SiteHeader({ active, accountQuip }: { active?: string; accountQuip?: string }) {
   return (
     <>
       <Ticker />
       <header className={s.nav}>
         <div className={s.desk}>
-          <NavBar links={NAV_LINKS} active={active} cartCount={0} />
+          <NavBar links={NAV_LINKS} active={active} cartCount={0} account={<AccountNav quip={accountQuip} />} />
         </div>
         <div className={s.phone}>
-          <NavBar compact cartCount={0} />
+          <NavBar compact cartCount={0} account={<AccountNav compact quip={accountQuip} />} />
         </div>
       </header>
     </>

@@ -5,6 +5,11 @@ import { LINEUP } from '@/components/landing/content';
 // Nav + footer copy shared by every page. Links are absolute so they work from any page.
 export const SHOP_HREF = '/shop';
 export const ABOUT_HREF = '/#about';
+export const LOGIN_HREF = '/login';
+export const SIGNUP_HREF = '/signup';
+export const FORGOT_HREF = '/forgot-password';
+// My orders isn't built yet.
+export const ORDERS_HREF = '#';
 
 export const NAV_LINKS: NavItem[] = [
   { label: 'shop', id: 'shop', href: SHOP_HREF, quip: "it's all free" },
@@ -13,8 +18,8 @@ export const NAV_LINKS: NavItem[] = [
 
 const flavourLinks = LINEUP.map((f) => ({ label: f.name, href: SHOP_HREF }));
 const accountLinks = [
-  { label: 'log in', href: '#' },
-  { label: 'my orders', href: '#' },
+  { label: 'log in', href: LOGIN_HREF },
+  { label: 'my orders', href: ORDERS_HREF },
   { label: 'cart', href: '#' },
 ];
 const truthLinks = [

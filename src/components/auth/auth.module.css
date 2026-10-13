@@ -1,0 +1,522 @@
+/* Account pages (log in, sign up, forgot / reset password). Desktop matches the 1440 artboards, phone the 390 ones (≤760px). */
+
+.page {
+  overflow-x: clip;
+}
+
+@media (min-width: 761px) {
+  .phone {
+    display: none !important;
+  }
+}
+@media (max-width: 760px) {
+  .desk {
+    display: none !important;
+  }
+}
+
+/* ---------- layout ---------- */
+.main {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 28px;
+  min-height: 794px;
+  box-sizing: border-box;
+  padding: 20px 28px;
+  border-bottom: var(--rule);
+}
+.panel {
+  position: relative;
+  display: grid;
+  place-items: center;
+  padding: 40px 28px;
+  border: var(--outline);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+}
+.slant {
+  position: absolute;
+  left: -12%;
+  right: -12%;
+  top: 50%;
+  z-index: 1;
+  transform: rotate(var(--tilt));
+  border-top: var(--border-thin) solid var(--ink-900);
+}
+.slot {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 480px;
+}
+
+/* ---------- art panel ---------- */
+.art {
+  position: relative;
+  border: var(--outline);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+}
+.artImg {
+  object-fit: cover;
+}
+.artSticker {
+  position: absolute;
+  top: 36px;
+  left: 36px;
+}
+.doodle {
+  position: absolute;
+  font-family: var(--font-hand);
+  line-height: 1;
+  color: var(--ink-900);
+}
+.d1 {
+  top: 44px;
+  right: 56px;
+  font-size: 64px;
+  transform: rotate(12deg);
+}
+.d2 {
+  top: 300px;
+  right: 48px;
+  font-size: 56px;
+  transform: rotate(-8deg);
+}
+.d3 {
+  top: 380px;
+  left: 44px;
+  font-size: 56px;
+  transform: rotate(6deg);
+}
+.artNote {
+  position: absolute;
+  left: 36px;
+  bottom: 40px;
+  max-width: 280px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 18px 22px;
+  background: var(--cream-50);
+  border: var(--outline);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  transform: rotate(-3deg);
+}
+.artLine {
+  font-family: var(--font-hand);
+  font-size: 28px;
+  line-height: 1.1;
+  color: var(--nish-600);
+  margin: 0;
+}
+
+/* phone strip that replaces the art panel */
+.strip {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  height: 84px;
+  padding: 0 16px;
+  border-bottom: var(--rule);
+  overflow: hidden;
+}
+.stripCan {
+  height: 112px;
+  width: auto;
+  margin-top: 34px;
+  transform: rotate(10deg);
+  flex-shrink: 0;
+}
+.stripLine {
+  font-family: var(--font-hand);
+  font-size: 21px;
+  line-height: 1.1;
+  color: var(--ink-900);
+  margin: 0;
+  transform: rotate(-2deg);
+}
+
+/* ---------- drifting backdrop ---------- */
+.backdrop {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+.drifter {
+  position: absolute;
+  top: 100%;
+  pointer-events: auto;
+  cursor: pointer;
+  animation: drift var(--d) linear var(--o) infinite;
+}
+@keyframes drift {
+  from {
+    transform: translate(0, 0) rotate(var(--r0));
+  }
+  to {
+    transform: translate(var(--dx), -1000px) rotate(var(--r1));
+  }
+}
+.driftCan {
+  display: block;
+  width: auto;
+  filter: drop-shadow(3px 3px 0 var(--ink-900));
+  animation: nish-wobble var(--w) ease-in-out infinite;
+}
+.driftChip {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 15px;
+  font-weight: 500;
+  padding: 6px 12px;
+  border-radius: var(--radius-pill);
+  border: var(--border-thick) solid var(--ink-900);
+  color: var(--ink-900);
+  box-shadow: 3px 3px 0 var(--ink-900);
+  white-space: nowrap;
+  animation: nish-wobble var(--w) ease-in-out infinite;
+}
+.driftHand {
+  font-family: var(--font-hand);
+  font-size: 30px;
+  padding: 2px 14px;
+}
+.popWord {
+  position: absolute;
+  translate: -50% -50%;
+  font-family: var(--font-hand);
+  font-size: 26px;
+  color: var(--nish-600);
+  white-space: nowrap;
+  pointer-events: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .drifter {
+    animation-duration: 120s;
+  }
+}
+
+/* ---------- form card ---------- */
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 28px 32px;
+  background: var(--cream-50);
+  border: var(--outline);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-lg);
+}
+.roomy {
+  gap: 16px;
+  padding: 32px;
+}
+.head {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.h1 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 40px;
+  line-height: 1;
+  letter-spacing: -0.01em;
+  margin: 0;
+  text-wrap: pretty;
+}
+.roomy .h1 {
+  font-size: 42px;
+}
+.lede {
+  font-size: 16px;
+  line-height: 1.45;
+  color: var(--text-secondary);
+  margin: 0;
+}
+.forgot {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: -8px;
+}
+.textLink {
+  display: inline-flex;
+  align-items: center;
+  min-height: 32px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ink-900);
+  text-underline-offset: 4px;
+}
+.textLink:hover {
+  color: var(--nish-600);
+  text-underline-offset: 6px;
+}
+.submit {
+  margin-top: 4px;
+}
+.switch {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 4px;
+  font-size: 15px;
+  margin: 0;
+}
+.switch a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 32px;
+  padding: 0 2px;
+  color: var(--ink-900);
+  font-weight: 700;
+  text-underline-offset: 4px;
+}
+.switch a:hover {
+  color: var(--nish-600);
+  text-underline-offset: 6px;
+}
+.fine {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--text-secondary);
+  margin: 0;
+  padding-top: 12px;
+  border-top: 1px dashed var(--ink-300);
+}
+.inlineAction {
+  border: 0;
+  padding: 0;
+  background: none;
+  font: inherit;
+  font-weight: 700;
+  color: var(--ink-900);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+.spin {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+.spinner {
+  width: 18px;
+  height: 18px;
+  box-sizing: border-box;
+  border-radius: 50%;
+  border: 3px solid var(--ink-300);
+  border-top-color: var(--ink-900);
+  animation: spin 700ms linear infinite;
+}
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .spinner {
+    animation-duration: 3s;
+  }
+}
+
+/* ---------- status card (check your inbox, success, expired) ---------- */
+.status {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 16px;
+  padding: 48px 32px 36px;
+  background: var(--cream-50);
+  border: var(--outline);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-lg);
+}
+.statusDoodle {
+  position: absolute;
+  font-family: var(--font-hand);
+  color: var(--nish-500);
+}
+.sd1 {
+  top: 34px;
+  left: 86px;
+  font-size: 40px;
+  transform: rotate(-14deg);
+}
+.sd2 {
+  top: 58px;
+  right: 86px;
+  font-size: 30px;
+  transform: rotate(10deg);
+}
+.badge {
+  width: 104px;
+  height: 104px;
+  border-radius: 50%;
+  background: var(--zest-500);
+  border: var(--outline);
+  box-shadow: var(--shadow-sm);
+  display: grid;
+  place-items: center;
+  transform: rotate(-6deg);
+}
+.badgeError {
+  background: var(--error-100);
+}
+.statusTitle {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 44px;
+  line-height: 1;
+  margin: 8px 0 0;
+}
+.statusBody {
+  font-size: 16px;
+  line-height: 1.5;
+  margin: 0;
+  max-width: 360px;
+  overflow-wrap: anywhere;
+}
+.statusAside {
+  font-family: var(--font-hand);
+  font-size: 26px;
+  line-height: 1.1;
+  color: var(--nish-500);
+  transform: rotate(-2deg);
+  margin: 0;
+}
+.statusAction {
+  width: 100%;
+  margin-top: 8px;
+}
+.statusFoot {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 2px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--text-secondary);
+  margin: 0;
+}
+.statusFoot a,
+.statusFoot button {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 4px;
+  border: 0;
+  background: none;
+  font: inherit;
+  font-weight: 500;
+  color: var(--ink-900);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  cursor: pointer;
+}
+.statusFoot a:hover,
+.statusFoot button:hover {
+  color: var(--nish-600);
+  text-underline-offset: 6px;
+}
+.statusFoot button:disabled {
+  cursor: default;
+  color: var(--text-secondary);
+  text-decoration: none;
+}
+
+/* ---------- tablet: drop the art panel ---------- */
+@media (max-width: 1000px) {
+  .main {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .art {
+    display: none;
+  }
+}
+
+/* ---------- phone (≤760) ---------- */
+@media (max-width: 760px) {
+  .main {
+    display: block;
+    min-height: 0;
+    padding: 0;
+  }
+  .panel {
+    display: block;
+    padding: 64px 16px 72px;
+    border: 0;
+    border-radius: 0;
+  }
+  .slant {
+    left: -10%;
+    right: -10%;
+    top: 16px;
+    transform: rotate(var(--tilt-phone));
+  }
+  .slot {
+    max-width: none;
+  }
+  .card,
+  .roomy {
+    gap: 16px;
+    padding: 24px 20px;
+    border-radius: 28px;
+    box-shadow: var(--shadow-md);
+  }
+  .h1,
+  .roomy .h1 {
+    font-size: 38px;
+  }
+  .lede {
+    font-size: 15px;
+  }
+  .forgot {
+    margin-top: -10px;
+  }
+  .textLink,
+  .switch a {
+    min-height: 44px;
+  }
+  .status {
+    gap: 14px;
+    padding: 32px 20px 24px;
+    border-radius: 28px;
+    box-shadow: var(--shadow-md);
+  }
+  .sd1 {
+    top: 22px;
+    left: 44px;
+    font-size: 34px;
+  }
+  .sd2 {
+    top: 44px;
+    right: 44px;
+    font-size: 26px;
+  }
+  .badge {
+    width: 92px;
+    height: 92px;
+  }
+  .statusTitle {
+    font-size: 38px;
+  }
+  .statusBody {
+    font-size: 15px;
+  }
+  .statusAside {
+    font-size: 23px;
+  }
+}
