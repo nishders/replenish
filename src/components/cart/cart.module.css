@@ -1,0 +1,690 @@
+/* Cart page. Desktop matches the 1440 artboards, phone the 390 ones (≤760px). */
+
+.page {
+  overflow-x: clip;
+}
+
+@media (min-width: 761px) {
+  .phone {
+    display: none !important;
+  }
+}
+@media (max-width: 760px) {
+  .desk {
+    display: none !important;
+  }
+}
+
+.main {
+  padding: 56px 28px 88px;
+  border-bottom: var(--rule);
+}
+
+/* ---------- head ---------- */
+.head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 32px;
+  margin-bottom: 36px;
+}
+.headCopy {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.h1 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 72px;
+  line-height: 0.98;
+  letter-spacing: -0.01em;
+  margin: 0;
+  max-width: 880px;
+  text-wrap: pretty;
+}
+.meta {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+.back {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 0 4px;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--ink-900);
+  text-underline-offset: 4px;
+  white-space: nowrap;
+}
+.back:hover {
+  color: var(--ink-900);
+  text-underline-offset: 7px;
+}
+
+/* ---------- removed / undo ---------- */
+.removed {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  max-width: 900px;
+  box-sizing: border-box;
+  padding: 8px 8px 8px 14px;
+  margin-bottom: 20px;
+  background: var(--cream-50);
+  border: var(--border-thick) dashed var(--ink-900);
+  border-radius: var(--radius-pill);
+}
+.tick {
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: var(--zest-500);
+  border: var(--border-thin) solid var(--ink-900);
+  display: grid;
+  place-items: center;
+}
+.removedText {
+  flex: 1;
+  font-size: 16px;
+}
+.removedName {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+.undo {
+  min-height: 44px;
+  padding: 0 20px;
+  border: var(--outline);
+  border-radius: var(--radius-pill);
+  background: var(--zest-500);
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--ink-900);
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--dur-base) var(--ease-squish);
+}
+.undo:hover {
+  background: var(--zest-400);
+  transform: translateY(-2px);
+}
+
+/* ---------- items + summary ---------- */
+.layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 420px;
+  gap: 56px;
+  align-items: start;
+}
+.rows {
+  display: flex;
+  flex-direction: column;
+  border-top: var(--rule);
+}
+.row {
+  display: grid;
+  grid-template-columns: 112px minmax(0, 1fr) auto 56px auto;
+  gap: 12px 24px;
+  align-items: center;
+  padding: 20px 0;
+  border-bottom: var(--rule);
+}
+.thumb {
+  display: block;
+  width: 112px;
+  height: 112px;
+  object-fit: cover;
+  border: var(--outline);
+  border-radius: var(--radius-lg);
+}
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+.name {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 1.1;
+  margin: 0;
+}
+.line {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--text-secondary);
+  margin: 0;
+}
+.price {
+  font-family: var(--font-mono);
+  font-size: 15px;
+  text-align: right;
+}
+.stepper {
+  display: inline-flex;
+  align-items: center;
+  height: 48px;
+  border: var(--border-thick) solid var(--ink-900);
+  border-radius: var(--radius-pill);
+  background: var(--cream-50);
+  overflow: hidden;
+}
+.step {
+  width: 48px;
+  height: 100%;
+  border: 0;
+  background: none;
+  display: grid;
+  place-items: center;
+  color: var(--ink-900);
+  cursor: pointer;
+}
+.step:hover:not(:disabled) {
+  background: var(--zest-100);
+}
+.step:disabled {
+  color: var(--ink-300);
+  cursor: not-allowed;
+}
+.stepLocked,
+.stepLocked:disabled {
+  border-left: 2px dashed var(--ink-300);
+  background: var(--ink-100);
+  color: var(--ink-500);
+}
+.qty {
+  min-width: 32px;
+  text-align: center;
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: 16px;
+}
+.remove {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 44px;
+  padding: 0 8px;
+  border: 0;
+  background: none;
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--ink-900);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  cursor: pointer;
+}
+.remove:hover {
+  color: var(--nish-600);
+  text-underline-offset: 7px;
+}
+.maxNote {
+  grid-column: 2 / -1;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px;
+  background: var(--zest-100);
+  border: var(--border-thin) solid var(--ink-900);
+  border-radius: var(--radius-md);
+  font-size: 15px;
+}
+.rowControls {
+  display: contents;
+}
+
+.summary {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 28px;
+  background: var(--cream-50);
+  border: var(--outline);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-md);
+}
+.summaryTitle {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 30px;
+  line-height: 1;
+  margin: 0 0 4px;
+}
+.sumLine {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-mono);
+  font-size: 15px;
+}
+.total {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  border-top: var(--outline);
+  padding-top: 14px;
+  margin-top: 4px;
+}
+.totalLabel {
+  font-family: var(--font-display);
+  font-size: 30px;
+}
+.totalValue {
+  font-family: var(--font-display);
+  font-size: 72px;
+  line-height: 0.9;
+  color: var(--nish-500);
+}
+.proud {
+  font-family: var(--font-hand);
+  font-size: 24px;
+  line-height: 1.1;
+  color: var(--nish-500);
+  transform: rotate(-2deg);
+  margin: 0 0 4px;
+  text-align: right;
+}
+.fine {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--text-secondary);
+  text-align: center;
+  margin: 0;
+}
+
+/* ---------- log in prompt (desktop inline, phone sheet) ---------- */
+.auth {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 20px;
+  background: var(--zest-100);
+  border: var(--outline);
+  border-radius: var(--radius-lg);
+}
+.authHead {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.lockDot {
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: var(--zest-500);
+  border: var(--border-thin) solid var(--ink-900);
+  display: grid;
+  place-items: center;
+}
+.authTitle {
+  flex: 1;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 1.1;
+  margin: 0;
+}
+.close {
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+  border: 0;
+  border-radius: 50%;
+  background: none;
+  display: grid;
+  place-items: center;
+  color: var(--ink-900);
+  cursor: pointer;
+}
+.close:hover {
+  background: var(--zest-500);
+}
+.authBody {
+  font-size: 15px;
+  line-height: 1.45;
+  margin: 0;
+}
+.authButtons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+/* ---------- empty ---------- */
+.empty {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 16px;
+  padding: 64px 24px 72px;
+  background: var(--cream-50);
+  border: var(--border-thick) dashed var(--ink-900);
+  border-radius: var(--radius-xl);
+}
+.emptyDoodle {
+  position: absolute;
+  font-family: var(--font-hand);
+  color: var(--nish-500);
+}
+.e1 {
+  top: 56px;
+  left: calc(50% - 170px);
+  font-size: 48px;
+  transform: rotate(-16deg);
+}
+.e2 {
+  top: 44px;
+  left: calc(50% + 100px);
+  font-size: 36px;
+  transform: rotate(10deg);
+}
+.e3 {
+  top: 150px;
+  left: calc(50% + 130px);
+  font-size: 34px;
+  transform: rotate(-6deg);
+}
+.e4 {
+  top: 160px;
+  left: calc(50% - 150px);
+  font-size: 30px;
+}
+.emptyTitle {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 44px;
+  line-height: 1.05;
+  margin: 12px 0 0;
+  max-width: 640px;
+}
+.emptyAside {
+  font-family: var(--font-hand);
+  font-size: 26px;
+  color: var(--nish-500);
+  transform: rotate(-2deg);
+  margin: 0;
+}
+.emptyCta {
+  margin-top: 8px;
+}
+.problem {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+.jokes {
+  border-bottom: var(--rule);
+}
+
+/* phone-only bits */
+.phonePrice {
+  display: none;
+}
+
+/* phone-only checkout bar + sheet */
+.bar,
+.sheet {
+  display: none;
+}
+
+@media (max-width: 1100px) {
+  .layout {
+    grid-template-columns: minmax(0, 1fr) 360px;
+    gap: 32px;
+  }
+  .row {
+    grid-template-columns: 96px minmax(0, 1fr) auto;
+  }
+  .thumb {
+    width: 96px;
+    height: 96px;
+  }
+  .rowControls {
+    grid-column: 2 / -1;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+}
+
+/* ---------- phone (≤760) ---------- */
+@media (max-width: 760px) {
+  .main {
+    padding: 28px 16px 32px;
+  }
+  .head {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  .headCopy {
+    gap: 10px;
+  }
+  .back {
+    order: -1;
+    align-self: flex-start;
+    gap: 6px;
+    padding: 0;
+    font-size: 15px;
+  }
+  .h1 {
+    font-size: 40px;
+    line-height: 1;
+    letter-spacing: 0;
+  }
+  .meta {
+    font-size: 12px;
+  }
+
+  .removed {
+    gap: 10px;
+    padding: 6px 6px 6px 12px;
+    margin-bottom: 16px;
+  }
+  .tick {
+    width: 28px;
+    height: 28px;
+  }
+  .removedText {
+    font-size: 14px;
+    line-height: 1.3;
+  }
+  .removedName {
+    display: none;
+  }
+  .undo {
+    padding: 0 18px;
+  }
+
+  .layout {
+    display: block;
+  }
+  .row {
+    grid-template-columns: 88px minmax(0, 1fr);
+    gap: 12px 14px;
+    padding: 18px 0;
+    align-items: start;
+  }
+  .thumb {
+    width: 88px;
+    height: 88px;
+    border-radius: 20px;
+  }
+  .info {
+    gap: 4px;
+  }
+  .name {
+    font-size: 20px;
+  }
+  .line {
+    font-size: 12px;
+    line-height: 1.45;
+  }
+  .rowControls {
+    grid-column: 1 / -1;
+    justify-content: space-between;
+  }
+  .rowControls .price {
+    display: none;
+  }
+  .phonePrice {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 13px;
+    margin-top: 2px;
+  }
+  .maxNote {
+    grid-column: 1 / -1;
+    padding: 10px 14px;
+    font-size: 14px;
+    line-height: 1.35;
+  }
+  .summary {
+    gap: 12px;
+    margin-top: 24px;
+    padding: 22px 20px;
+    border-radius: 28px;
+    box-shadow: var(--shadow-sm);
+  }
+  .summaryTitle {
+    font-size: 26px;
+    margin-bottom: 2px;
+  }
+  .sumLine {
+    font-size: 14px;
+  }
+  .total {
+    padding-top: 12px;
+    margin-top: 2px;
+  }
+  .totalLabel {
+    font-size: 26px;
+  }
+  .totalValue {
+    font-size: 56px;
+  }
+  .fine {
+    font-size: 12px;
+    text-align: left;
+  }
+
+  .empty {
+    gap: 14px;
+    padding: 48px 20px 40px;
+    border-radius: 28px;
+  }
+  .e1 {
+    top: 40px;
+    left: 52px;
+    font-size: 40px;
+  }
+  .e2 {
+    top: 34px;
+    left: auto;
+    right: 50px;
+    font-size: 30px;
+  }
+  .e3 {
+    top: 120px;
+    left: auto;
+    right: 40px;
+    font-size: 28px;
+  }
+  .e4 {
+    display: none;
+  }
+  .emptyTitle {
+    font-size: 32px;
+    margin-top: 8px;
+  }
+  .emptyAside {
+    font-size: 22px;
+  }
+  .emptyCta {
+    align-self: stretch;
+    margin-top: 6px;
+  }
+
+  .bar {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 40;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 16px 22px;
+    background: var(--cream-50);
+    border-top: var(--outline);
+  }
+  .barTotal {
+    display: flex;
+    flex-direction: column;
+  }
+  .barLabel {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-caps);
+    color: var(--text-secondary);
+  }
+  .barValue {
+    font-family: var(--font-display);
+    font-size: 30px;
+    line-height: 1;
+    color: var(--nish-500);
+  }
+  .barCta {
+    flex: 1;
+  }
+  .barSpacer {
+    height: 116px;
+  }
+  .sheet {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 41;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 18px 16px 24px;
+    background: var(--cream-50);
+    border-top: var(--outline);
+    border-radius: 28px 28px 0 0;
+    box-shadow: 0 -5px 0 var(--ink-900);
+    animation: sheet-in 360ms var(--ease-squish);
+  }
+}
+@keyframes sheet-in {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .sheet {
+    animation: none;
+  }
+}

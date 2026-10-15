@@ -8,6 +8,7 @@ export const ABOUT_HREF = '/#about';
 export const LOGIN_HREF = '/login';
 export const SIGNUP_HREF = '/signup';
 export const FORGOT_HREF = '/forgot-password';
+export const CART_HREF = '/cart';
 // My orders isn't built yet.
 export const ORDERS_HREF = '#';
 
@@ -20,7 +21,7 @@ const flavourLinks = LINEUP.map((f) => ({ label: f.name, href: SHOP_HREF }));
 const accountLinks = [
   { label: 'log in', href: LOGIN_HREF },
   { label: 'my orders', href: ORDERS_HREF },
-  { label: 'cart', href: '#' },
+  { label: 'cart', href: CART_HREF },
 ];
 const truthLinks = [
   { label: 'what is this?', href: ABOUT_HREF },

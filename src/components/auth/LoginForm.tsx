@@ -17,7 +17,8 @@ const NOTICES = {
 } as const;
 export type LoginNotice = keyof typeof NOTICES;
 
-export function LoginForm({ notice }: { notice?: LoginNotice }) {
+// `returnTo` is where to go after logging in (e.g. back to the cart).
+export function LoginForm({ notice, returnTo = '/' }: { notice?: LoginNotice; returnTo?: string }) {
   const router = useRouter();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -39,7 +40,7 @@ export function LoginForm({ notice }: { notice?: LoginNotice }) {
     try {
       const { error } = await getBrowserSupabase().auth.signInWithPassword({ email: email.trim(), password });
       if (!error) {
-        router.push('/');
+        router.push(returnTo);
         router.refresh();
         return;
       }

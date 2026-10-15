@@ -5,14 +5,14 @@ import { LOGIN_THEME } from '@/components/auth/themes';
 
 export const metadata: Metadata = { title: 'log in — replenish' };
 
-type Props = { searchParams: Promise<{ notice?: string }> };
+type Props = { searchParams: Promise<{ notice?: string; next?: string }> };
 
 export default async function Login({ searchParams }: Props) {
-  const { notice } = await searchParams;
+  const { notice, next } = await searchParams;
   const known = notice === 'confirmed' || notice === 'link-expired' ? (notice as LoginNotice) : undefined;
   return (
     <AuthLayout theme={LOGIN_THEME}>
-      <LoginForm notice={known} />
+      <LoginForm notice={known} returnTo={next?.startsWith('/') && !next.startsWith('//') ? next : '/'} />
     </AuthLayout>
   );
 }

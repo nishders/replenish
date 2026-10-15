@@ -191,3 +191,91 @@
 .menuItem:focus-visible {
   background: var(--zest-100);
 }
+
+/* ---------- "added to cart" toast ---------- */
+.toast {
+  position: fixed;
+  right: 28px;
+  bottom: 28px;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 6px 6px 6px 8px;
+  background: var(--cream-50);
+  border: var(--outline);
+  border-radius: var(--radius-pill);
+  box-shadow: var(--shadow-md);
+  animation: toast-in 420ms var(--ease-squish);
+}
+@keyframes toast-in {
+  0% {
+    transform: translateY(24px) scale(0.9) rotate(-2deg);
+    opacity: 0;
+  }
+  60% {
+    transform: translateY(-4px) scale(1.03) rotate(1deg);
+    opacity: 1;
+  }
+  100% {
+    transform: none;
+    opacity: 1;
+  }
+}
+.toastTick {
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: var(--zest-500);
+  border: var(--border-thin) solid var(--ink-900);
+  display: grid;
+  place-items: center;
+}
+.toastText {
+  font-size: 16px;
+  font-weight: 600;
+}
+.toastLink {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 16px;
+  border-radius: var(--radius-pill);
+  background: var(--ink-900);
+  color: var(--cream-50);
+  font-size: 15px;
+  font-weight: 700;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.toastLink:hover {
+  background: var(--nish-500);
+  color: var(--cream-50);
+}
+@media (max-width: 760px) {
+  .toast {
+    left: 12px;
+    right: 12px;
+    bottom: 16px;
+    gap: 10px;
+  }
+  .toastTick {
+    width: 32px;
+    height: 32px;
+  }
+  .toastText {
+    flex: 1;
+    font-size: 14px;
+    line-height: 1.25;
+  }
+  .toastLink {
+    font-size: 14px;
+    padding: 0 14px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .toast {
+    animation: none;
+  }
+}

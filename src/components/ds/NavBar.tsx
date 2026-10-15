@@ -96,7 +96,7 @@ export function NavBar({
       icon="shopping-bag"
       label="cart"
       size={compact ? 40 : 44}
-      badge={cartCount}
+      badge={cartCount >= 10 ? '10+' : cartCount}
       cartTarget
       onClick={onCart}
       quip={cartCount ? `${cartCount} × nothing` : undefined}

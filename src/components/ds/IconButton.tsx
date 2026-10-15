@@ -35,7 +35,7 @@ type IconButtonProps = Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'style'> & 
   quip?: ReactNode | false;
   size?: number;
   variant?: 'sketch' | 'filled' | 'outline';
-  badge?: number | null;
+  badge?: number | string | null;
   rattle?: boolean;
   cartTarget?: boolean;
   seed?: number;

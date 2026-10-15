@@ -142,6 +142,28 @@
 }
 .addWrap {
   margin-top: 10px;
+  container-type: inline-size;
+}
+/* in the cart: stepper beside "add more?", stacked when the card is narrow */
+.split {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.split > [role='group'] {
+  flex-shrink: 0;
+  justify-content: space-between;
+}
+.more {
+  display: block;
+  flex: 1;
+  min-width: 0;
+}
+@container (max-width: 250px) {
+  .split {
+    flex-direction: column;
+    align-items: stretch;
+  }
 }
 .outro {
   font-family: var(--font-hand);
@@ -228,6 +250,9 @@
   .addWrap {
     order: 2;
     margin-top: 6px;
+  }
+  .addWrap {
+    --step-h: 44px;
   }
   .addWrap button {
     min-height: 44px;

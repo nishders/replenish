@@ -1,9 +1,9 @@
 import Image from 'next/image';
 import { sceneSrc, type Flavour } from '@/components/ds/assets';
-import { Button } from '@/components/ds/Button';
 import { Sticker } from '@/components/ds/Sticker';
 import { SiteFooter, SiteHeader } from '@/components/site/SiteChrome';
 import type { Product } from '@/lib/supabase';
+import { AddToCartButton } from './AddToCartButton';
 import s from './shop.module.css';
 
 const cx = (...c: (string | false | undefined)[]) => c.filter(Boolean).join(' ');
@@ -47,10 +47,7 @@ function ProductCard({ product }: { product: Product }) {
         </div>
         <p className={s.cardLine}>{product.description}</p>
         <div className={s.addWrap}>
-          {/* Add to cart doesn't do anything yet. */}
-          <Button size="sm" icon="plus" fullWidth quip="it's free. go wild.">
-            add to cart
-          </Button>
+          <AddToCartButton slug={product.slug} name={product.name} />
         </div>
       </div>
     </article>

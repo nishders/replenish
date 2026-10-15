@@ -20,23 +20,29 @@ const CONFETTI_BG = ['var(--nish-500)', 'var(--zest-500)', 'var(--flavour-strawb
 
 type Bit = { id: string; t: string; x: number; y: number; r: number; c: string; on: boolean };
 
+const SR_ONLY = { position: 'absolute', width: 1, height: 1, overflow: 'hidden', clip: 'rect(0 0 0 0)', whiteSpace: 'nowrap' } as const;
+
+// Letters animate one by one; screen readers get the whole words instead of "s h o p".
 function Ripple({ text, on }: { text: ReactNode; on: boolean }) {
   if (typeof text !== 'string') return <>{text}</>;
   return (
     <>
-      {text.split('').map((c, i) => (
-        <span
-          key={i}
-          style={{
-            display: 'inline-block',
-            whiteSpace: 'pre',
-            transform: on ? 'translateY(-3px)' : 'none',
-            transition: `transform 300ms ${SPRING} ${i * 22}ms`,
-          }}
-        >
-          {c}
-        </span>
-      ))}
+      <span style={SR_ONLY}>{text}</span>
+      <span aria-hidden="true">
+        {text.split('').map((c, i) => (
+          <span
+            key={i}
+            style={{
+              display: 'inline-block',
+              whiteSpace: 'pre',
+              transform: on ? 'translateY(-3px)' : 'none',
+              transition: `transform 300ms ${SPRING} ${i * 22}ms`,
+            }}
+          >
+            {c}
+          </span>
+        ))}
+      </span>
     </>
   );
 }

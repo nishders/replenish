@@ -1,10 +1,9 @@
 import { Footer } from '@/components/ds/Footer';
 import { GooglyEyes } from '@/components/ds/GooglyEyes';
 import { Logo } from '@/components/ds/Logo';
-import { NavBar } from '@/components/ds/NavBar';
 import { Ticker } from '@/components/ds/Ticker';
-import { AccountNav } from './AccountNav';
-import { CREDIT, FOOTER_COLUMNS, NAV_LINKS, PHONE_FOOTER_COLUMNS } from './content';
+import { CREDIT, FOOTER_COLUMNS, PHONE_FOOTER_COLUMNS } from './content';
+import { SiteNav } from './SiteNav';
 import s from './site.module.css';
 
 const cx = (...c: (string | false | undefined)[]) => c.filter(Boolean).join(' ');
@@ -14,14 +13,7 @@ export function SiteHeader({ active, accountQuip }: { active?: string; accountQu
   return (
     <>
       <Ticker />
-      <header className={s.nav}>
-        <div className={s.desk}>
-          <NavBar links={NAV_LINKS} active={active} cartCount={0} account={<AccountNav quip={accountQuip} />} />
-        </div>
-        <div className={s.phone}>
-          <NavBar compact cartCount={0} account={<AccountNav compact quip={accountQuip} />} />
-        </div>
-      </header>
+      <SiteNav active={active} accountQuip={accountQuip} />
     </>
   );
 }
