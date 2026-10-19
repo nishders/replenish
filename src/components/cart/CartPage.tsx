@@ -8,7 +8,7 @@ import { Button } from '@/components/ds/Button';
 import { Icon } from '@/components/ds/Icon';
 import { IconButton } from '@/components/ds/IconButton';
 import { Ticker } from '@/components/ds/Ticker';
-import { LOGIN_HREF, SHOP_HREF, SIGNUP_HREF } from '@/components/site/content';
+import { CHECKOUT_HREF, LOGIN_HREF, SHOP_HREF, SIGNUP_HREF } from '@/components/site/content';
 import { cartActions, MAX_QTY, useCart } from '@/lib/cart';
 import type { Product } from '@/lib/supabase';
 import { useAuth } from '@/lib/useAuth';
@@ -67,7 +67,7 @@ function AuthPrompt({ onClose, phone }: { onClose: () => void; phone?: boolean }
         <Button size={size} fullWidth quip="welcome back-ish" onClick={() => router.push(`${LOGIN_HREF}?next=/cart`)}>
           log in
         </Button>
-        <Button variant="outline" size={size} fullWidth quip="takes ten seconds" onClick={() => router.push(SIGNUP_HREF)}>
+        <Button variant="outline" size={size} fullWidth quip="takes ten seconds" onClick={() => router.push(`${SIGNUP_HREF}?next=/cart`)}>
           sign up
         </Button>
       </div>
@@ -81,7 +81,6 @@ export function CartPage({ products }: { products: Product[] | null }) {
   const { user } = useAuth();
   const [removed, setRemoved] = useState<{ slug: string; qty: number; name: string }>();
   const [askLogin, setAskLogin] = useState(false);
-  const [soon, setSoon] = useState(false);
 
   // Rows follow the shop's order; anything no longer in the products table is skipped.
   const rows = (products ?? []).filter((p) => cart[p.slug]).map((p) => ({ product: p, qty: cart[p.slug] }));
@@ -97,8 +96,8 @@ export function CartPage({ products }: { products: Product[] | null }) {
     cartActions.restore(removed.slug, removed.qty);
     setRemoved(undefined);
   };
-  // Logged out: ask to log in. Logged in: checkout isn't built yet.
-  const checkout = () => (user ? setSoon(true) : setAskLogin(true));
+  // Logged out: ask to log in (which brings them back here). Logged in: on to checkout.
+  const checkout = () => (user ? router.push(CHECKOUT_HREF) : setAskLogin(true));
 
   const backLink = (
     <a href={SHOP_HREF} className={s.back}>
@@ -194,11 +193,11 @@ export function CartPage({ products }: { products: Product[] | null }) {
                     <Button size="lg" fullWidth arrow magnetic quip="total: still zero" onClick={checkout}>
                       checkout for free
                     </Button>
-                    <p className={s.fine}>{soon ? "checkout opens soon. your cart's saved till then." : "no card needed. there's nothing to charge you for."}</p>
+                    <p className={s.fine}>no card needed. there&apos;s nothing to charge you for.</p>
                   </>
                 )}
               </div>
-              <p className={cx(s.fine, s.phone)}>{soon ? "checkout opens soon. your cart's saved till then." : "no card needed. there's nothing to charge you for."}</p>
+              <p className={cx(s.fine, s.phone)}>no card needed. there&apos;s nothing to charge you for.</p>
             </aside>
           </div>
         ) : (

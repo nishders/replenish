@@ -9,6 +9,7 @@ export const LOGIN_HREF = '/login';
 export const SIGNUP_HREF = '/signup';
 export const FORGOT_HREF = '/forgot-password';
 export const CART_HREF = '/cart';
+export const CHECKOUT_HREF = '/checkout';
 // My orders isn't built yet.
 export const ORDERS_HREF = '#';
 

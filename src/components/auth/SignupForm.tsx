@@ -12,7 +12,8 @@ import s from './auth.module.css';
 
 type FieldErrors = { email?: string; password?: string; confirm?: string };
 
-export function SignupForm() {
+// `returnTo` is where the confirmation link sends them once confirmed (e.g. back to the cart).
+export function SignupForm({ returnTo = '/' }: { returnTo?: string }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirm, setConfirm] = useState('');
@@ -32,7 +33,7 @@ export function SignupForm() {
     setBusy(true);
     try {
       const addr = email.trim();
-      const { data, error } = await getBrowserSupabase().auth.signUp({ email: addr, password, options: { emailRedirectTo: authCallbackUrl('/') } });
+      const { data, error } = await getBrowserSupabase().auth.signUp({ email: addr, password, options: { emailRedirectTo: authCallbackUrl(returnTo) } });
       if (error) {
         const d = describeAuthError(error, 'signup');
         setErrors({ email: d.email, password: d.password });
@@ -53,7 +54,7 @@ export function SignupForm() {
   const resend = async () => {
     if (!sentTo) return;
     setResent('sending');
-    const { error } = await getBrowserSupabase().auth.resend({ type: 'signup', email: sentTo, options: { emailRedirectTo: authCallbackUrl('/') } });
+    const { error } = await getBrowserSupabase().auth.resend({ type: 'signup', email: sentTo, options: { emailRedirectTo: authCallbackUrl(returnTo) } });
     setResent(error ? 'failed' : 'sent');
   };
 
@@ -144,7 +145,7 @@ export function SignupForm() {
       </SubmitButton>
       <p className={s.switch}>
         <span>already have an account?</span>
-        <a href={LOGIN_HREF}>log in</a>
+        <a href={returnTo === '/' ? LOGIN_HREF : `${LOGIN_HREF}?next=${encodeURIComponent(returnTo)}`}>log in</a>
       </p>
       <p className={s.fine}>
         <span aria-hidden="true">✶</span>

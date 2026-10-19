@@ -124,7 +124,7 @@ export function LoginForm({ notice, returnTo = '/' }: { notice?: LoginNotice; re
       </SubmitButton>
       <p className={s.switch}>
         <span>new here?</span>
-        <a href={SIGNUP_HREF}>create an account</a>
+        <a href={returnTo === '/' ? SIGNUP_HREF : `${SIGNUP_HREF}?next=${encodeURIComponent(returnTo)}`}>create an account</a>
       </p>
     </form>
   );

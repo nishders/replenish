@@ -1,0 +1,460 @@
+/* Order confirmed page. Desktop matches the 1440 artboards, phone the 390 ones (≤760px). */
+
+@media (min-width: 761px) {
+  .phone {
+    display: none !important;
+  }
+}
+@media (max-width: 760px) {
+  .desk {
+    display: none !important;
+  }
+}
+
+/* ---------- celebration ---------- */
+.hero {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 20px;
+  padding: 72px 28px 64px;
+  border-bottom: var(--rule);
+  overflow: hidden;
+}
+.kicker {
+  font-family: var(--font-hand);
+  font-size: 30px;
+  color: var(--nish-500);
+  transform: rotate(-4deg);
+  margin: 0;
+}
+.h1 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 96px;
+  line-height: 0.95;
+  letter-spacing: -0.01em;
+  margin: 0;
+  max-width: 1080px;
+  text-wrap: balance;
+}
+.ticket {
+  display: flex;
+  align-items: stretch;
+  margin-top: 16px;
+  background: var(--cream-50);
+  border: var(--outline);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  text-align: left;
+}
+.ticketPart {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 20px 32px;
+}
+.ticketPart + .ticketPart {
+  border-left: var(--border-thick) dashed var(--ink-900);
+}
+.label {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-caps);
+  color: var(--text-secondary);
+}
+.number {
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: 44px;
+  line-height: 1;
+}
+.date {
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 1.2;
+}
+
+/* ---------- details ---------- */
+.details {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 32px;
+  padding: 56px 28px 40px;
+  align-items: start;
+}
+.panel {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 28px;
+  background: var(--cream-50);
+  border: var(--outline);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-sm);
+}
+.panelHead {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+}
+.h2 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 30px;
+  line-height: 1;
+  margin: 0;
+}
+.count {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+.items {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  border-top: var(--rule);
+}
+.item {
+  display: grid;
+  grid-template-columns: 64px minmax(0, 1fr) auto auto;
+  gap: 16px;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: var(--rule);
+}
+.itemImg {
+  display: block;
+  width: 64px;
+  height: 64px;
+  object-fit: cover;
+  border: var(--outline);
+  border-radius: var(--radius-md);
+}
+.itemName {
+  font-family: var(--font-display);
+  font-size: 22px;
+  line-height: 1.1;
+}
+.itemQty {
+  font-family: var(--font-mono);
+  font-size: 16px;
+  font-weight: 500;
+}
+.itemFree {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  color: var(--text-secondary);
+  min-width: 40px;
+  text-align: right;
+}
+.total {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding-top: 6px;
+}
+.totalLabel {
+  font-family: var(--font-display);
+  font-size: 26px;
+}
+.totalValue {
+  font-family: var(--font-display);
+  font-size: 44px;
+  line-height: 0.9;
+  color: var(--nish-500);
+}
+.side {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.panelAside {
+  font-family: var(--font-hand);
+  font-size: 22px;
+  color: var(--nish-500);
+  transform: rotate(-3deg);
+}
+.track {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+.trackStep {
+  display: grid;
+  grid-template-columns: 48px minmax(0, 1fr);
+  gap: 4px 16px;
+}
+.trackDot {
+  width: 48px;
+  height: 48px;
+  box-sizing: border-box;
+  border-radius: 50%;
+  border: var(--border-thick) solid var(--ink-900);
+  display: grid;
+  place-items: center;
+}
+.dotDone {
+  background: var(--nish-500);
+  color: var(--cream-50);
+}
+.dotNow {
+  background: var(--zest-500);
+}
+.dotNever {
+  border-style: dashed;
+  border-color: var(--ink-300);
+  color: var(--ink-500);
+}
+.trackText {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2px;
+}
+.trackTitle {
+  font-size: 17px;
+  font-weight: 700;
+}
+.trackSub {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+.trackLine {
+  justify-self: center;
+  width: 0;
+  height: 28px;
+  border-left: var(--border-thick) solid var(--ink-900);
+}
+.trackLineNext {
+  border-left-style: dashed;
+  border-left-color: var(--ink-300);
+}
+.mail {
+  display: grid;
+  grid-template-columns: 48px minmax(0, 1fr);
+  gap: 16px;
+  align-items: center;
+  padding: 20px 24px;
+  border: var(--border-thick) dashed var(--ink-900);
+  border-radius: var(--radius-lg);
+}
+.mailIcon {
+  width: 48px;
+  height: 48px;
+  box-sizing: border-box;
+  border-radius: 50%;
+  background: var(--zest-100);
+  border: var(--border-thick) solid var(--ink-900);
+  display: grid;
+  place-items: center;
+}
+.mailText {
+  font-size: 17px;
+  line-height: 1.45;
+  margin: 0;
+  text-wrap: pretty;
+  overflow-wrap: anywhere;
+}
+.actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 28px;
+  padding: 8px 28px 72px;
+  border-bottom: var(--rule);
+}
+.buttons {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+.thanks {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+/* ---------- not found ---------- */
+.missingWrap {
+  padding: 72px 28px 88px;
+  border-bottom: var(--rule);
+}
+.missingBody {
+  font-size: 18px;
+  line-height: 1.5;
+  margin: 0;
+  max-width: 520px;
+  text-wrap: pretty;
+}
+
+.jokes {
+  border-bottom: var(--rule);
+}
+
+@media (max-width: 1100px) {
+  .h1 {
+    font-size: 72px;
+  }
+  .details {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* ---------- phone (≤760) ---------- */
+@media (max-width: 760px) {
+  .hero {
+    gap: 14px;
+    padding: 44px 16px 36px;
+  }
+  .kicker {
+    font-size: 24px;
+  }
+  .h1 {
+    font-size: 48px;
+    line-height: 0.98;
+    letter-spacing: 0;
+  }
+  .ticket {
+    flex-direction: column;
+    align-self: stretch;
+    margin-top: 10px;
+    box-shadow: var(--shadow-sm);
+  }
+  .ticketPart {
+    gap: 4px;
+    padding: 16px 20px;
+  }
+  .ticketPart + .ticketPart {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 20px;
+    border-left: 0;
+    border-top: var(--border-thick) dashed var(--ink-900);
+  }
+  .label {
+    font-size: 11px;
+  }
+  .number {
+    font-size: 32px;
+  }
+  .date {
+    font-size: 15px;
+  }
+  .details {
+    gap: 16px;
+    padding: 24px 16px 16px;
+  }
+  .side {
+    gap: 16px;
+  }
+  .panel {
+    gap: 10px;
+    padding: 20px;
+    border-radius: 28px;
+    box-shadow: none;
+  }
+  .panelHead {
+    flex-wrap: wrap;
+  }
+  .h2 {
+    font-size: 24px;
+  }
+  .count {
+    font-size: 12px;
+  }
+  .item {
+    grid-template-columns: 52px minmax(0, 1fr) auto;
+    gap: 12px;
+    padding: 10px 0;
+  }
+  .itemImg {
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
+  }
+  .itemName {
+    font-size: 18px;
+  }
+  .itemQty {
+    font-size: 15px;
+  }
+  .itemFree {
+    display: none;
+  }
+  .totalLabel {
+    font-size: 22px;
+  }
+  .totalValue {
+    font-size: 36px;
+  }
+  .panelAside {
+    font-size: 20px;
+    transform: rotate(-2deg);
+    transform-origin: left;
+  }
+  .trackStep {
+    grid-template-columns: 44px minmax(0, 1fr);
+    gap: 4px 14px;
+  }
+  .trackDot {
+    width: 44px;
+    height: 44px;
+  }
+  .trackTitle {
+    font-size: 16px;
+  }
+  .trackSub {
+    font-size: 12px;
+  }
+  .trackLine {
+    height: 22px;
+  }
+  .mail {
+    grid-template-columns: 40px minmax(0, 1fr);
+    gap: 12px;
+    padding: 16px;
+  }
+  .mailIcon {
+    width: 40px;
+    height: 40px;
+    border-width: var(--border-thin);
+  }
+  .mailText {
+    font-size: 15px;
+  }
+  .actions {
+    gap: 12px;
+    padding: 4px 16px 32px;
+  }
+  .buttons {
+    flex-direction: column;
+    align-items: stretch;
+    align-self: stretch;
+    gap: 12px;
+  }
+  .thanks {
+    font-size: 12px;
+    line-height: 1.5;
+    text-align: center;
+  }
+  .missingWrap {
+    padding: 28px 16px 32px;
+  }
+  .missingBody {
+    font-size: 16px;
+  }
+}

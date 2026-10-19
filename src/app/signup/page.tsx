@@ -5,10 +5,13 @@ import { SIGNUP_THEME } from '@/components/auth/themes';
 
 export const metadata: Metadata = { title: 'sign up — replenish' };
 
-export default function Signup() {
+type Props = { searchParams: Promise<{ next?: string }> };
+
+export default async function Signup({ searchParams }: Props) {
+  const { next } = await searchParams;
   return (
     <AuthLayout theme={SIGNUP_THEME}>
-      <SignupForm />
+      <SignupForm returnTo={next?.startsWith('/') && !next.startsWith('//') ? next : '/'} />
     </AuthLayout>
   );
 }

@@ -82,6 +82,9 @@ export const cartActions = {
     delete rest[slug];
     write(rest);
   },
+  clear() {
+    write({});
+  },
   restore(slug: string, qty: number) {
     write({ ...read(), [slug]: Math.min(MAX_QTY, qty) });
   },
