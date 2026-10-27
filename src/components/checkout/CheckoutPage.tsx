@@ -233,10 +233,10 @@ export function CheckoutPage({ products, email, footer }: { products: Product[] 
               ✶
             </span>
             <span className={s.desk}>
-              <IconButton icon="shopping-bag" label="empty bag" size={128} badge={0} rattle quip="*rattle* … nothing in here" />
+              <IconButton icon="shopping-bag" label="empty bag" size={128} badge={0} rattle quip="*rattle* … nothing in here" onClick={() => router.push(SHOP_HREF)} />
             </span>
             <span className={s.phone}>
-              <IconButton icon="shopping-bag" label="empty bag" size={104} badge={0} rattle quip="*rattle* … nothing in here" />
+              <IconButton icon="shopping-bag" label="empty bag" size={104} badge={0} rattle quip="*rattle* … nothing in here" onClick={() => router.push(SHOP_HREF)} />
             </span>
             <h2 className={c.emptyTitle}>nothing to check out. even by our standards.</h2>
             <p className={c.emptyAside}>add some nothing first, then come back.</p>

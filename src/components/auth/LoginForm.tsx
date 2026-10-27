@@ -14,6 +14,7 @@ import s from './auth.module.css';
 const NOTICES = {
   confirmed: { tone: 'success', title: "you're confirmed.", body: 'log in below. nothing has changed, but now it\'s official.' },
   'link-expired': { tone: 'warning', title: 'that link has gone flat', body: "confirmation links expire. log in and we'll offer you a fresh one." },
+  'password-changed': { tone: 'success', title: 'password changed.', body: 'try to remember this one. log in with it below.' },
 } as const;
 export type LoginNotice = keyof typeof NOTICES;
 

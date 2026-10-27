@@ -48,6 +48,7 @@ type NavBarProps = {
   compact?: boolean;
   logoHref?: string;
   account?: ReactNode;
+  menuOpen?: boolean;
   onNavigate?: (id: string) => void;
   onCart?: () => void;
   onAccount?: () => void;
@@ -66,6 +67,7 @@ export function NavBar({
   compact = false,
   logoHref = '/',
   account,
+  menuOpen,
   onNavigate,
   onCart,
   onAccount,
@@ -107,7 +109,7 @@ export function NavBar({
     return (
       <nav style={{ ...bar, height: 60 }}>
         <div>
-          <IconButton icon="menu" label="menu" size={40} onClick={onMenu} />
+          <IconButton icon="menu" label="menu" size={40} onClick={onMenu} quip={menuOpen ? false : undefined} aria-haspopup="menu" aria-expanded={menuOpen} />
         </div>
         {logo}
         <div style={{ display: 'flex', gap: 8, justifySelf: 'end', alignItems: 'center' }}>

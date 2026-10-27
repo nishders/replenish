@@ -10,7 +10,7 @@ import { Icon } from '@/components/ds/Icon';
 import { IconButton } from '@/components/ds/IconButton';
 import { Ticker } from '@/components/ds/Ticker';
 import { ORDERS_HREF, SHOP_HREF } from '@/components/site/content';
-import { formatOrderDate } from '@/lib/orders';
+import { OrderDate } from './OrderDate';
 import s from './order.module.css';
 
 const cx = (...k: (string | false | undefined)[]) => k.filter(Boolean).join(' ');
@@ -88,10 +88,6 @@ function useConfetti(host: React.RefObject<HTMLDivElement | null>) {
   }, [host]);
 }
 
-// The date is shown in the visitor's own time zone (the server only knows UTC), so it's filled in by the browser.
-function OrderDate({ iso }: { iso: string }) {
-  return <span suppressHydrationWarning>{formatOrderDate(iso)}</span>;
-}
 
 function Confirmed({ order, email }: { order: Order; email: string }) {
   const router = useRouter();
@@ -224,10 +220,10 @@ function NotFound() {
           ~ ~
         </span>
         <span className={s.desk}>
-          <IconButton icon="search" label="order search" size={128} quip="looked everywhere. twice." />
+          <IconButton icon="search" label="order search" size={128} quip="looked everywhere. twice." onClick={() => router.push(ORDERS_HREF)} />
         </span>
         <span className={s.phone}>
-          <IconButton icon="search" label="order search" size={104} quip="looked everywhere. twice." />
+          <IconButton icon="search" label="order search" size={104} quip="looked everywhere. twice." onClick={() => router.push(ORDERS_HREF)} />
         </span>
         <h1 className={c.emptyTitle}>we couldn&apos;t find that order.</h1>
         <p className={s.missingBody}>check the order number in your confirmation email, or find it in your orders.</p>

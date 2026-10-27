@@ -215,10 +215,10 @@ export function CartPage({ products }: { products: Product[] | null }) {
               ✶
             </span>
             <span className={s.desk}>
-              <IconButton icon="shopping-bag" label="empty bag" size={128} badge={0} rattle quip="*rattle* … nothing in here" />
+              <IconButton icon="shopping-bag" label="empty bag" size={128} badge={0} rattle quip="*rattle* … nothing in here" onClick={() => router.push(SHOP_HREF)} />
             </span>
             <span className={s.phone}>
-              <IconButton icon="shopping-bag" label="empty bag" size={104} badge={0} rattle quip="*rattle* … nothing in here" />
+              <IconButton icon="shopping-bag" label="empty bag" size={104} badge={0} rattle quip="*rattle* … nothing in here" onClick={() => router.push(SHOP_HREF)} />
             </span>
             <h2 className={s.emptyTitle}>your cart is empty. so are our bottles.</h2>
             <p className={s.emptyAside}>honestly, it&apos;s the most on-brand thing here.</p>

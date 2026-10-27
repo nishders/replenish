@@ -1,7 +1,9 @@
 'use client';
 
-import { useEffect, useState, type FormEvent } from 'react';
+import { useState, type FormEvent } from 'react';
+import type { AuthError } from '@supabase/supabase-js';
 import { useRouter } from 'next/navigation';
+import { resetPassword } from '@/app/reset-password/actions';
 import { Button } from '@/components/ds/Button';
 import { Message } from '@/components/ds/Message';
 import { TextField } from '@/components/ds/TextField';
@@ -11,24 +13,18 @@ import { checkConfirm, checkNewPassword, describeAuthError, PASSWORD_HINT, SOMET
 import { AuthHeading, StatusCard, SubmitButton } from './parts';
 import s from './auth.module.css';
 
-type Stage = 'checking' | 'form' | 'success' | 'expired';
+type Stage = 'form' | 'expired';
 
-// Reached from the reset email (via /auth/confirm, which signs the person in for this one change).
+// Reached from the reset email. The link doesn't log anyone in; saving goes through the server,
+// then it's straight to log in with the new password.
 export function ResetForm({ expired }: { expired?: boolean }) {
   const router = useRouter();
-  const [stage, setStage] = useState<Stage>(expired ? 'expired' : 'checking');
+  const [stage, setStage] = useState<Stage>(expired ? 'expired' : 'form');
   const [password, setPassword] = useState('');
   const [confirm, setConfirm] = useState('');
   const [errors, setErrors] = useState<{ password?: string; confirm?: string }>({});
   const [formError, setFormError] = useState<FormError>();
   const [busy, setBusy] = useState(false);
-
-  useEffect(() => {
-    if (expired) return;
-    getBrowserSupabase()
-      .auth.getUser()
-      .then(({ data }) => setStage(data.user ? 'form' : 'expired'));
-  }, [expired]);
 
   const submit = async (e: FormEvent) => {
     e.preventDefault();
@@ -39,16 +35,17 @@ export function ResetForm({ expired }: { expired?: boolean }) {
 
     setBusy(true);
     try {
-      const supabase = getBrowserSupabase();
-      const { error } = await supabase.auth.updateUser({ password });
-      if (!error) {
-        // Log out so "log in" on the success card means what it says.
-        await supabase.auth.signOut();
-        setStage('success');
-      } else if (error.code === 'session_not_found' || error.code === 'session_expired' || error.status === 401) {
+      const result = await resetPassword(password);
+      if (result.ok) {
+        // Clear any login this browser had before, then log in fresh with the new password.
+        await getBrowserSupabase().auth.signOut({ scope: 'local' });
+        router.push(`${LOGIN_HREF}?notice=password-changed`);
+        return;
+      }
+      if (result.expired) {
         setStage('expired');
       } else {
-        const d = describeAuthError(error, 'reset');
+        const d = describeAuthError({ code: result.code, status: result.status, message: result.message } as AuthError, 'reset');
         setErrors({ password: d.password });
         setFormError(d.form);
       }
@@ -58,19 +55,6 @@ export function ResetForm({ expired }: { expired?: boolean }) {
     setBusy(false);
   };
 
-  if (stage === 'checking') return null;
-
-  if (stage === 'success') {
-    return (
-      <StatusCard icon="circle-check" doodles={['✶', '0g']} title="password changed." body="try to remember this one." aside="we can't remind you. we never see it.">
-        <div className={s.statusAction}>
-          <Button size="lg" fullWidth arrow quip="go on then" onClick={() => router.push(LOGIN_HREF)}>
-            log in
-          </Button>
-        </div>
-      </StatusCard>
-    );
-  }
 
   if (stage === 'expired') {
     return (

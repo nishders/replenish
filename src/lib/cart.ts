@@ -74,6 +74,23 @@ export const cartActions = {
     if (toast) window.dispatchEvent(new CustomEvent('replenish:cart-added', { detail: slug }));
     return true;
   },
+  // Adds several flavours at once (e.g. "order again"), each capped at the max. Returns how many cans were added.
+  addMany(lines: { slug: string; quantity: number }[]) {
+    const cart = { ...read() };
+    let added = 0;
+    for (const { slug, quantity } of lines) {
+      const n = Math.max(0, Math.min(quantity, MAX_QTY - (cart[slug] ?? 0)));
+      if (n > 0) {
+        cart[slug] = (cart[slug] ?? 0) + n;
+        added += n;
+      }
+    }
+    if (!added) return 0;
+    write(cart);
+    window.dispatchEvent(new CustomEvent('nish:cart-bump'));
+    window.dispatchEvent(new CustomEvent('replenish:cart-added'));
+    return added;
+  },
   setQty(slug: string, qty: number) {
     write({ ...read(), [slug]: Math.max(1, Math.min(MAX_QTY, qty)) });
   },

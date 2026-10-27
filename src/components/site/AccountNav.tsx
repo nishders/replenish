@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { Button } from '@/components/ds/Button';
 import { Icon } from '@/components/ds/Icon';
 import { IconButton } from '@/components/ds/IconButton';
@@ -15,6 +15,7 @@ import s from './site.module.css';
 export function AccountNav({ compact = false, quip }: { compact?: boolean; quip?: string }) {
   const { user, ready } = useAuth();
   const router = useRouter();
+  const here = usePathname() === ORDERS_HREF;
   const [open, setOpen] = useState(false);
   const [pillHover, setPillHover] = useState(false);
   const wrap = useRef<HTMLDivElement>(null);
@@ -80,9 +81,10 @@ export function AccountNav({ compact = false, quip }: { compact?: boolean; quip?
             <span className={s.menuEmail}>{email}</span>
             <span className={s.menuAside}>you keep coming back. it&apos;s a lot.</span>
           </div>
-          <a role="menuitem" href={ORDERS_HREF} className={s.menuItem}>
+          <a role="menuitem" href={ORDERS_HREF} aria-current={here ? 'page' : undefined} className={here ? `${s.menuItem} ${s.menuHere}` : s.menuItem}>
             <Icon name="package" size={20} />
-            <span>my orders</span>
+            <span className={s.menuGrow}>my orders</span>
+            {here && <span className={s.hereTag}>you&apos;re here</span>}
           </a>
           <button type="button" role="menuitem" className={s.menuItem} onClick={logOut}>
             <Icon name="log-out" size={20} />

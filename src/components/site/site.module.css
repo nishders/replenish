@@ -279,3 +279,27 @@
     animation: none;
   }
 }
+
+/* ---------- phone site menu (☰) ---------- */
+.siteMenu {
+  top: calc(100% + 6px);
+  left: 8px;
+  right: auto;
+  width: 240px;
+}
+.phone {
+  position: relative;
+}
+.menuHere {
+  border: var(--border-thick) solid var(--ink-900);
+  background: var(--zest-100);
+  font-weight: 700;
+}
+.menuGrow {
+  flex: 1;
+}
+.hereTag {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 500;
+}

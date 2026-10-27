@@ -10,8 +10,8 @@ export const SIGNUP_HREF = '/signup';
 export const FORGOT_HREF = '/forgot-password';
 export const CART_HREF = '/cart';
 export const CHECKOUT_HREF = '/checkout';
-// My orders isn't built yet.
-export const ORDERS_HREF = '#';
+export const ORDERS_HREF = '/orders';
+export const GITHUB_HREF = 'https://github.com/nishders/replenish';
 
 export const NAV_LINKS: NavItem[] = [
   { label: 'shop', id: 'shop', href: SHOP_HREF, quip: "it's all free" },
@@ -26,13 +26,12 @@ const accountLinks = [
 ];
 const truthLinks = [
   { label: 'what is this?', href: ABOUT_HREF },
-  { label: 'credits', href: '#' },
 ];
 
 export const FOOTER_COLUMNS: FooterColumn[] = [
   { title: 'shop', links: flavourLinks },
   { title: 'account', links: accountLinks },
-  { title: 'the truth', links: [...truthLinks, { label: 'github', href: '#' }] },
+  { title: 'the truth', links: [...truthLinks, { label: 'github', href: GITHUB_HREF }] },
 ];
 
 // The phone footer drops github and stacks "the truth" under "account".

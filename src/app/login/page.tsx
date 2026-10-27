@@ -9,7 +9,7 @@ type Props = { searchParams: Promise<{ notice?: string; next?: string }> };
 
 export default async function Login({ searchParams }: Props) {
   const { notice, next } = await searchParams;
-  const known = notice === 'confirmed' || notice === 'link-expired' ? (notice as LoginNotice) : undefined;
+  const known = notice === 'confirmed' || notice === 'link-expired' || notice === 'password-changed' ? (notice as LoginNotice) : undefined;
   return (
     <AuthLayout theme={LOGIN_THEME}>
       <LoginForm notice={known} returnTo={next?.startsWith('/') && !next.startsWith('//') ? next : '/'} />
